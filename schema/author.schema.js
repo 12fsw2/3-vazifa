@@ -1,10 +1,11 @@
 const { Schema, model } = require("mongoose")
 
 const Author = new Schema({
-    fullName: {
-      type: String,
-      required: true  
-    },
+     fullName: {
+    type: String,
+    required: [true, "Author name is required"],
+    minlength: [3, "Name must be at least 3 characters"]
+  },
     birthDate: {
       type: Date,
       required: true   

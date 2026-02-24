@@ -1,23 +1,22 @@
-const express = require("express")
-const cors = require("cors")
-const connectDB = require("./config/db.config")
-const authorRouter = require("./router/author.routes")
-const bookRouter = require("./router/book.routes")
-require("dotenv").config()
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./config/db.config");
+const authorRouter = require("./router/author.routes");
+const bookRouter = require("./router/book.routes");
+require("dotenv").config();
 
-const PORT = process.env.PORT || 3000
-const app = express()
+const PORT = process.env.PORT || 3000;
+const app = express();
 
-connectDB()
-app.use(express.json())
-app.use(cors())
+connectDB();
 
+app.use(express.json());
+app.use(cors());
 
-
-// router
-app.use(authorRouter)
-app.use(bookRouter)
+// Router
+app.use("/authors", authorRouter);
+app.use("/books", bookRouter);
 
 app.listen(PORT, () => {
     console.log("Server is running at: " + PORT);
-})
+});

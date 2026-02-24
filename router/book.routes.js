@@ -1,12 +1,27 @@
-const {Router} = require("express")
-const { getAllBooks, getOneBook, addBook, updateBook, deleteBook } = require("../controller/book.controller")
+const { Router } = require("express");
+const {
+  getAllBooks,
+  getOneBook,
+  addBook,
+  updateBook,
+  deleteBook
+} = require("../controller/book.controller");
 
-const bookRouter = Router()
+const bookRouter = Router();
 
-bookRouter.get("/get_all_books", getAllBooks)
-bookRouter.get("/get_one_book/:id", getOneBook)
-bookRouter.post("/add_book", addBook)
-bookRouter.put("/update_book/:id", updateBook)
-bookRouter.delete("/delete_book/:id", deleteBook)
+// Barcha kitoblarni olish
+bookRouter.get("/", getAllBooks);
 
-module.exports = bookRouter
+// Yagona kitobni olish
+bookRouter.get("/:id", getOneBook);
+
+// Yangi kitob qo'shish
+bookRouter.post("/", addBook);
+
+// Kitobni yangilash
+bookRouter.put("/:id", updateBook);
+
+// Kitobni o'chirish
+bookRouter.delete("/:id", deleteBook);
+
+module.exports = bookRouter;
