@@ -4,24 +4,27 @@ const {
   getOneBook,
   addBook,
   updateBook,
-  deleteBook
+  deleteBook,
+  search
 } = require("../controller/book.controller");
 
 const bookRouter = Router();
 
 // Barcha kitoblarni olish
-bookRouter.get("/", getAllBooks);
+bookRouter.get("/get_all_books", getAllBooks);
+
+bookRouter.get("/search", search);
 
 // Yagona kitobni olish
-bookRouter.get("/:id", getOneBook);
+bookRouter.get("/get_one_book/:id", getOneBook);
 
 // Yangi kitob qo'shish
-bookRouter.post("/", addBook);
+bookRouter.post("/add_book", addBook);
 
 // Kitobni yangilash
-bookRouter.put("/:id", updateBook);
+bookRouter.put("/update_book/:id", updateBook);
 
 // Kitobni o'chirish
-bookRouter.delete("/:id", deleteBook);
+bookRouter.delete("/delete_book/:id", deleteBook);
 
 module.exports = bookRouter;

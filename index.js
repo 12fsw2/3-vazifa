@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(cors());
 
 // Router
-app.use("/authors", authorRouter);
-app.use("/books", bookRouter);
+app.use("/", authorRouter);
+app.use("/", bookRouter);
 
 app.listen(PORT, () => {
     console.log("Server is running at: " + PORT);

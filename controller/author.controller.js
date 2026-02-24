@@ -10,6 +10,19 @@ const getAllAuthors = async (req, res) => {
   }
 };
 
+const search = async (req, res) => {
+  try {
+    const {searchingValue} = req.query
+    const result = await AuthorSchema.find({
+      fullName: {$regex: searchingValue, $options: "i"},
+  
+    });
+    res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 // Yagona authorni olish
 const getOneAuthor = async (req, res) => {
   try {
@@ -89,5 +102,6 @@ module.exports = {
   getOneAuthor,
   addAuthor,
   updateAuthor,
-  deleteAuthor
+  deleteAuthor,
+  search
 };

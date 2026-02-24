@@ -4,24 +4,28 @@ const {
   getOneAuthor,
   addAuthor,
   updateAuthor,
-  deleteAuthor
+  deleteAuthor,
+  search
 } = require("../controller/author.controller");
 
 const authorRouter = Router();
 
+authorRouter.get("/search", search);
+
 // Barcha authorlarni olish
-authorRouter.get("/", getAllAuthors);
+authorRouter.get("/get_all_authors", getAllAuthors);
 
 // Yagona authorni olish
-authorRouter.get("/:id", getOneAuthor);
+authorRouter.get("/get_one_author/:id", getOneAuthor);
+
 
 // Yangi author qo'shish
-authorRouter.post("/", addAuthor);
+authorRouter.post("/add_author", addAuthor);
 
 // Authorni yangilash
-authorRouter.put("/:id", updateAuthor);
+authorRouter.put("/update_author/:id", updateAuthor);
 
 // Authorni o'chirish
-authorRouter.delete("/:id", deleteAuthor);
+authorRouter.delete("/delete_author/:id", deleteAuthor);
 
 module.exports = authorRouter;

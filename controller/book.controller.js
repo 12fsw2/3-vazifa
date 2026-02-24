@@ -71,6 +71,23 @@ const updateBook = async (req, res) => {
   }
 };
 
+
+const search = async (req, res) => {
+  try {
+    const { searchingValue } = req.query;
+
+    const result = await BookSchema.find({
+      title: { $regex: searchingValue, $options: "i" },
+    }).populate("author");
+
+    res.status(200).json(result);
+
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+
 // Kitobni o‘chirish
 const deleteBook = async (req, res) => {
   try {
@@ -92,5 +109,6 @@ module.exports = {
   getOneBook,
   addBook,
   updateBook,
-  deleteBook
+  deleteBook,
+  search
 };
